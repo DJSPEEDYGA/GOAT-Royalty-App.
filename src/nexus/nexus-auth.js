@@ -30,7 +30,8 @@ class NexusAuthentication {
       speedy: 'SPEEDY-THIRTY',
       flocka: 'FLOCKA-POWER',
       brother: 'BROTHER-LOYAL',
-      penny: 'PENNY-SMART'
+      penny: 'PENNY-SMART',
+      vanessa: 'VANESSA-WAVE'
     };
     
     // Team member roles
@@ -39,7 +40,8 @@ class NexusAuthentication {
       speedy: 'Founder & CEO',
       flocka: 'Partner & Brand Ambassador',
       brother: 'Partner & Operations',
-      penny: 'AI Financial Assistant'
+      penny: 'AI Financial Assistant',
+      vanessa: 'Royalty Data & Fingerprinting Specialist'
     };
     
     this.verifiedMember = null;

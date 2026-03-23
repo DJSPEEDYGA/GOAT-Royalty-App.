@@ -9,6 +9,7 @@
 | **Waka Flocka Flame** | FLOCKA-POWER | Partner & Brand Ambassador |
 | **Brother** | BROTHER-LOYAL | Partner & Operations |
 | **GOAT Money Penny** | PENNY-SMART | AI Financial Assistant |
+| **Ms. Vanessa** | VANESSA-WAVE | Royalty Data & Fingerprinting Specialist |
 
 ### Purpose
 These code words serve as our secret handshakes - a way to authenticate each team member in the GOAT 3026 Empire.
