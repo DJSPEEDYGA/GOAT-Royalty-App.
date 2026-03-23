@@ -42,18 +42,17 @@
     ],
     "win": {
       "target": [{ "target": "nsis", "arch": ["x64"] }],
-      "icon": "assets/icon.ico",
-      "artifactName": "Super-GOAT-Royalty-${version}-Setup.${ext}"
+      "artifactName": "Super-GOAT-Royalty-${version}-Setup.${ext}",
+      "sign": null,
+      "signAndEditExecutable": false
     },
     "mac": {
       "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }],
-      "icon": "assets/icon.icns",
       "category": "public.app-category.music",
       "artifactName": "Super-GOAT-Royalty-${version}.${ext}"
     },
     "linux": {
       "target": ["AppImage", "deb"],
-      "icon": "assets/icon.png",
       "category": "Audio;Music;Development",
       "artifactName": "Super-GOAT-Royalty-${version}.${ext}"
     },
@@ -62,8 +61,6 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "installerIcon": "assets/icon.ico",
-      "uninstallerIcon": "assets/icon.ico",
       "license": "LICENSE"
     },
     "publish": [{ "provider": "github", "owner": "DJSPEEDYGA", "repo": "GOAT-Royalty-App." }]
