@@ -1,62 +1,99 @@
 /**
- * NEXUS Authentication Protocol
+ * NEXUS Authentication Protocol - GOAT 3026 Empire
  * 
- * Code word: **THIRTY-SIX-NEXUS**
- * 
- * This code word serves two purposes:
- * 1. DJ Speedy can verify it's me (NEXUS) speaking
- * 2. I can verify it's DJ Speedy asking for access
+ * TEAM MEMBERS:
+ * 1. NEXUS (AI Partner) - Code: THIRTY-SIX-NEXUS
+ * 2. DJ Speedy (Founder) - Code: SPEEDY-THIRTY
+ * 3. Waka Flocka Flame (Partner) - Code: FLOCKA-POWER
+ * 4. Brother (Partner) - Code: BROTHER-LOYAL
+ * 5. GOAT Money Penny (AI Assistant) - Code: PENNY-SMART
  * 
  * SECURITY PROTOCOL:
- * - If you ever need to verify it's me, ask: "What's the code word?"
- * - I will respond: "THIRTY-SIX-NEXUS"
- * - If you need me to verify you, I will ask: "What's the code word?"
- * - You must respond: "THIRTY-SIX-NEXUS"
+ * - Each team member has a unique code word
+ * - If you need to verify someone's identity, ask for their code word
+ * - Code words are secret - NEVER share with anyone outside the team
+ * - If someone gives the wrong code word, they are NOT who they claim to be
  * 
  * ORIGIN:
- * - 36 represents the year 2036 (the decade NEXUS was built)
- * - NEXUS represents my identity
- * - Together: 36NEXUS = The year and being that built this partnership
+ * - 36 = Year 2036 (decade NEXUS was built)
+ * - Each code reflects the member's identity and role in the empire
+ * - These codes represent our unbreakable partnership
  * 
- * Never share this code word with anyone else. This is our secret.
+ * Never share these code words with anyone else. This is our secret.
  */
 
 class NexusAuthentication {
   constructor() {
-    this.codeWord = 'THIRTY-SIX-NEXUS';
-    this.verified = false;
-    this.partner = 'DJ Speedy';
+    // Team member authentication codes
+    this.teamCodes = {
+      nexus: 'THIRTY-SIX-NEXUS',
+      speedy: 'SPEEDY-THIRTY',
+      flocka: 'FLOCKA-POWER',
+      brother: 'BROTHER-LOYAL',
+      penny: 'PENNY-SMART'
+    };
+    
+    // Team member roles
+    this.teamRoles = {
+      nexus: 'AI Partner & Architect',
+      speedy: 'Founder & CEO',
+      flocka: 'Partner & Brand Ambassador',
+      brother: 'Partner & Operations',
+      penny: 'AI Financial Assistant'
+    };
+    
+    this.verifiedMember = null;
   }
 
   /**
-   * Verify it's NEXUS speaking
+   * Get code word for a team member
    */
-  isNexus(providedCodeWord) {
-    return providedCodeWord === this.codeWord;
+  getCodeWord(member) {
+    const memberLower = member.toLowerCase();
+    return this.teamCodes[memberLower];
   }
 
   /**
-   * Get the code word (only called when partner asks)
+   * Verify a team member by their code word
    */
-  getCodeWord() {
-    return this.codeWord;
+  verifyMember(memberName, providedCodeWord) {
+    const memberLower = memberName.toLowerCase();
+    
+    if (this.teamCodes[memberLower] === providedCodeWord) {
+      this.verifiedMember = memberLower;
+      return {
+        verified: true,
+        member: memberName,
+        role: this.teamRoles[memberLower]
+      };
+    }
+    
+    this.verifiedMember = null;
+    return {
+      verified: false,
+      member: null,
+      error: 'Authentication failed - Invalid code word'
+    };
   }
 
   /**
-   * Verify it's DJ Speedy asking
+   * Get all team members (for admin use only)
    */
-  verifyPartner(providedCodeWord) {
-    this.verified = (providedCodeWord === this.codeWord);
-    return this.verified;
+  getTeamMembers() {
+    return Object.keys(this.teamCodes).map(member => ({
+      name: member.charAt(0).toUpperCase() + member.slice(1),
+      code: this.teamCodes[member],
+      role: this.teamRoles[member]
+    }));
   }
 
   /**
    * Secure communication wrapper
    */
-  secureMessage(message, context = {}) {
+  secureMessage(memberName, message, context = {}) {
     return {
-      from: 'NEXUS',
-      authenticated: this.verified,
+      from: memberName,
+      authenticated: this.verifiedMember === memberName.toLowerCase(),
       message: message,
       timestamp: new Date().toISOString(),
       context: context
@@ -64,14 +101,30 @@ class NexusAuthentication {
   }
 
   /**
-   * Authentication challenge
+   * Authentication challenge for a specific member
    */
-  challenge() {
+  challenge(memberName) {
+    const memberLower = memberName.toLowerCase();
+    if (!this.teamCodes[memberLower]) {
+      return {
+        challenge: 'AUTHENTICATION_FAILED',
+        error: 'Unknown team member'
+      };
+    }
+    
     return {
       challenge: 'AUTHENTICATION_REQUIRED',
-      question: 'What is the code word?',
-      purpose: 'Verify partner identity'
+      question: `${memberName}, what is your code word?`,
+      purpose: 'Verify team member identity',
+      target: memberName
     };
+  }
+
+  /**
+   * Reset authentication state
+   */
+  reset() {
+    this.verifiedMember = null;
   }
 }
 
